@@ -26,8 +26,8 @@
     transition: transform var(--motion-title-duration) var(--ease-out) var(--reveal-delay, 0ms), opacity var(--motion-text-duration) var(--ease-out) var(--reveal-delay, 0ms);
   }
   .reveal-pending[data-reveal="line"].is-visible .reveal__content { opacity: 1; transform: none; }
-  .hero__title .hero__title-line:nth-child(2) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
-  .hero__title .hero__title-line:nth-child(3) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
+  .motion-ready .hero__title .hero__title-line:nth-child(2) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
+  .motion-ready .hero__title .hero__title-line:nth-child(3) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
 
   .reveal-pending[data-reveal="image"] { overflow: clip; }
   .reveal-pending[data-reveal="image"] > img {
@@ -48,9 +48,9 @@
     transition: opacity var(--motion-text-duration) var(--ease-out), transform var(--motion-text-duration) var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
   }
-  .reveal-pending[data-reveal="stagger"] > div:nth-child(2) { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
-  .reveal-pending[data-reveal="stagger"] > div:nth-child(3) { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
-  .reveal-pending[data-reveal="stagger"] > div:nth-child(4) { transition-delay: calc(var(--reveal-delay, 0ms) + 210ms); }
+  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(2) { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
+  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(3) { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
+  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(4) { transition-delay: calc(var(--reveal-delay, 0ms) + 210ms); }
   .reveal-pending[data-reveal="stagger"].is-visible > div { opacity: 1; transform: none; }
 
   /* The LCP photograph is visible throughout its short initial settling motion. */
