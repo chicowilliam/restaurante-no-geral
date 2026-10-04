@@ -1,0 +1,33 @@
+:root {
+  color-scheme: light;
+  --background-dark: #161713;
+  --surface-dark: #25251e;
+  --surface-light: #f1eee5;
+  --surface-warm: #e7e1d3;
+  --foreground: #24241e;
+  --foreground-muted: #67675e;
+  --foreground-on-dark: #f5f0e5;
+  --foreground-on-dark-muted: #d4cfc3;
+  --accent: #a88758;
+  --accent-light: #d6b987;
+  --focus-on-light: #644624;
+  --border-hairline: rgba(36, 36, 30, .2);
+  --border-hairline-inverse: rgba(245, 240, 229, .28);
+  --container: 88rem;
+  --gutter: clamp(1.25rem, 4.4vw, 5.5rem);
+  --section-space: clamp(5.5rem, 10vw, 10rem);
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', Arial, sans-serif;
+  --hero-background: #1b130f;
+  --hero-foreground: #f5eee2;
+  --hero-muted: #d3c5b5;
+  --hero-accent: #dbaa83;
+  --hero-button: #e9d8ba;
+  --hero-button-hover: #f2e4cb;
+  --hero-hairline: rgb(245 238 226 / .18);
+  --hero-shadow: 27 19 15;
+  --menu-label: #74614c;
+  --menu-hairline: rgb(36 36 30 / .16);
+  --header-height: 5.25rem;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
