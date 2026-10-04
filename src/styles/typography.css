@@ -1,0 +1,42 @@
+@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader-latin-standard-normal.woff2') format('woff2'); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('/fonts/newsreader-latin-standard-italic.woff2') format('woff2'); font-weight: 200 800; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Manrope'; src: url('/fonts/manrope-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; font-style: normal; font-display: swap; }
+
+.site-shell .section-shell, .hero__inner, .menu-intro__inner, .menu-layout { container-type: inline-size; }
+.site-shell h1, .site-shell h2, .site-shell h3 { font-optical-sizing: auto; font-weight: 430; }
+.site-shell .hero__title { font-size: var(--text-display-xl); line-height: .94; font-variation-settings: 'opsz' 72; font-weight: 420; }
+.site-shell .hero__title em { font-weight: 400; }
+.site-shell .hero__description { max-width: 28rem; font-size: var(--text-body); line-height: 1.8; }
+.site-shell .section-shell h2 { max-width: 18ch; font-size: var(--text-display-md); line-height: 1.06; font-variation-settings: 'opsz' 48; }
+.site-shell .highlights__heading h2 { max-width: 19ch; font-size: var(--text-heading-lg); }
+.site-shell .kitchen-section h2 { font-size: var(--text-display-lg); max-width: 13ch; }
+.site-shell .gallery h2 { max-width: none; font-size: var(--text-heading-lg); }
+.site-shell .reservation h2 { font-size: var(--text-display-lg); max-width: 14ch; }
+.site-shell .dish-feature__heading h3 { font-size: var(--text-heading-md); line-height: 1.13; font-variation-settings: 'opsz' 32; }
+.site-shell .bar-list__item h3 { font-size: 1.6rem; }
+.site-shell .site-header__brand { font-size: 2.6rem; font-weight: 460; font-variation-settings: 'opsz' 48; }
+.site-shell .site-header__nav a { font-family: var(--font-sans); }
+.site-shell .site-footer__brand { font-size: 4.5rem; font-variation-settings: 'opsz' 64; }
+.eyebrow, .hero__meta-label, .dish-feature__meta { font-size: var(--text-caption); font-weight: 600; }
+.site-shell .menu-intro h1 { font-size: var(--text-display-lg); font-variation-settings: 'opsz' 48; }
+.site-shell .menu-group__header h2 { font-size: var(--text-heading-lg); }
+.site-shell .menu-item h4 { font-family: var(--font-sans); font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.site-shell .menu-item__price, .site-shell .dish-feature__price { font-family: var(--font-sans); font-size: .875rem; font-weight: 550; font-variant-numeric: tabular-nums; }
+.reservation-dialog h2 { font-family: var(--font-display); font-weight: 430; font-optical-sizing: auto; }
+
+@media (max-width: 768px) {
+  .site-shell { --text-display-xl: clamp(3.15rem, 16cqi, 4.6rem); --text-display-lg: 2.8rem; --text-display-md: 2.5rem; --text-heading-lg: 2.35rem; --text-heading-md: 1.9rem; }
+  .site-shell .hero__title { font-variation-settings: 'opsz' 52; }
+  .site-shell .hero__eyebrow { font-size: .625rem; }
+  .site-shell .hero__content { padding-block: 8.25rem 22.5rem; }
+  .site-shell .hero__description { max-width: 24rem; font-size: .875rem; }
+  .site-shell .highlights__heading h2 { max-width: 17ch; }
+  .site-shell .site-header__brand { font-size: 2.3rem; }
+  .site-shell .site-header__nav a { font-size: 1.15rem; font-weight: 500; }
+  .site-shell .site-footer__brand { font-size: 3.75rem; }
+  .site-shell .reservation h2 { font-size: 3rem; }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .site-shell .hero__title { font-size: clamp(4rem, 8.6cqi, 6rem); }
+}
