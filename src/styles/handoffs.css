@@ -1,0 +1,14 @@
+.section-handoff { position: relative; z-index: 3; height: 0; color: var(--bronze-400); pointer-events: none; }
+.section-handoff svg { position: absolute; top: -2.5rem; left: 0; display: block; width: 100%; height: 5rem; overflow: clip; }
+.section-handoff path, .section-handoff circle { stroke: currentColor; stroke-width: .8; vector-effect: non-scaling-stroke; }
+.section-handoff path { opacity: .4; }
+.section-handoff circle { fill: var(--bronze-400); stroke-width: 0; opacity: .6; }
+.section-handoff--quiet svg { height: 2rem; top: -1rem; }
+.section-handoff--quiet path { opacity: .22; }
+
+@media (max-width: 768px) {
+  .section-handoff svg { height: 3rem; top: -1.5rem; }
+  .section-handoff--quiet svg { height: 1.5rem; top: -.75rem; }
+  .section-handoff path { opacity: .5; }
+  .section-handoff circle { r: 7px; }
+}
