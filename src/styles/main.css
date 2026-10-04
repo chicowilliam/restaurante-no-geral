@@ -290,6 +290,7 @@
   .gallery .gallery__item--2 img, .gallery .gallery__item--3 img { aspect-ratio: 4 / 5; }
   .gallery__caption { font-size: .73rem; }
   .visit__grid { display: block; }
+  .visit .visit__details h3 { font-size: .75rem; }
   .visit__details { margin-top: 2rem; grid-template-columns: 1fr; gap: 1.75rem; }
   .reservation__inner { display: block; }
   .reservation .eyebrow { margin-bottom: 1rem; }
