@@ -1,8 +1,11 @@
 import './styles/main.css';
 import './styles/motion.css';
+import './styles/reservation.css';
 import { initMotion } from './lib/motion';
+import { initReservation } from './components/reservation';
 
 initMotion();
+initReservation();
 
 const menuButton = document.querySelector<HTMLButtonElement>('.site-header__toggle');
 const navigation = document.querySelector<HTMLElement>('.site-header__nav');
@@ -25,7 +28,7 @@ if (menuButton && navigation) {
   });
 
   navigation.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a')) closeMenu(true);
+    if (event.target instanceof Element && event.target.closest('a, [data-reservation-open]')) closeMenu(!event.target.closest('[data-reservation-open]'));
   });
 
   document.addEventListener('keydown', (event) => {

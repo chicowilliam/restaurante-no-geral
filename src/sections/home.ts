@@ -1,7 +1,8 @@
 import { restaurant as r } from '../data/restaurant';
 import { featuredDishes, barHighlights, menuCopy } from '../data/menu';
 import { image } from '../components/media';
-import { header, footer, mobileActions, reservationHref } from '../components/chrome';
+import { header, footer, mobileActions } from '../components/chrome';
+import { reservationButton } from '../components/reservation';
 
 function hero(): string {
   return `<section class="hero" aria-labelledby="hero-title">
@@ -12,7 +13,7 @@ function hero(): string {
         <p class="eyebrow hero__eyebrow" data-reveal="fade" data-delay="80">${r.hero.eyebrow}</p>
         <h1 class="display hero__title" id="hero-title" data-reveal="line" data-delay="180"><span class="hero__title-line"><span class="reveal__content">${r.hero.headingLines[0]}</span></span><span class="hero__title-line"><span class="reveal__content"><em>${r.hero.headingLines[1]}</em></span></span><span class="hero__title-line"><span class="reveal__content">${r.hero.headingLines[2]}</span></span></h1>
         <p class="hero__description" data-reveal="fade" data-delay="380">${r.hero.description}</p>
-        <div class="hero__actions" data-reveal="fade" data-delay="480"><a class="button button--primary" href="${reservationHref}">${r.hero.primaryAction}</a><a class="button button--outline" href="/cardapio/">${r.hero.secondaryAction}</a></div>
+        <div class="hero__actions" data-reveal="fade" data-delay="480">${reservationButton(r.hero.primaryAction)}<a class="button button--outline" href="/cardapio/">${r.hero.secondaryAction}</a></div>
       </div>
       <div class="hero__meta" data-reveal="fade" data-delay="550">${r.hero.details.map((detail) => `<div class="hero__meta-item"><span class="hero__meta-label">${detail.label}</span><span class="hero__meta-value">${detail.value}</span></div>`).join('')}</div>
     </div>
@@ -21,7 +22,7 @@ function hero(): string {
 
 function service(): string {
   const s = r.service;
-  return `<section class="service-strip" aria-label="Informações de serviço"><dl class="editorial-container service-strip__grid" data-reveal="stagger"><div><dt>${r.visit.hours[0].days}</dt><dd><a href="#visite">${r.visit.hours[0].hours}</a></dd></div><div><dt>${s.locationLabel}</dt><dd><a href="#visite">${s.location}</a></dd></div><div><dt>${s.cuisineLabel}</dt><dd>${s.cuisine}</dd></div><div><dt>${s.reservationLabel}</dt><dd><a href="${reservationHref}">${s.reservationAction}</a></dd></div></dl></section>`;
+  return `<section class="service-strip" aria-label="Informações de serviço"><dl class="editorial-container service-strip__grid" data-reveal="stagger"><div><dt>${r.visit.hours[0].days}</dt><dd><a href="#visite">${r.visit.hours[0].hours}</a></dd></div><div><dt>${s.locationLabel}</dt><dd><a href="#visite">${s.location}</a></dd></div><div><dt>${s.cuisineLabel}</dt><dd>${s.cuisine}</dd></div><div><dt>${s.reservationLabel}</dt><dd>${reservationButton(s.reservationAction, 'service-strip__reserve')}</dd></div></dl></section>`;
 }
 
 function dishes(): string {
@@ -49,12 +50,12 @@ function visit(): string {
     <div class="visit__block"><h3>${r.visit.labels.address}</h3><address>${r.visit.address.join('<br>')}</address><a class="text-link visit__map-link" href="${r.visit.mapUrl}" target="_blank" rel="noopener noreferrer">${r.visit.mapLabel}</a></div>
     <div class="visit__block"><h3>${r.visit.labels.hours}</h3><dl class="visit__hours">${r.visit.hours.map((entry) => `<div><dt>${entry.days}</dt><dd>${entry.hours}</dd></div>`).join('')}</dl></div>
     <div class="visit__block visit__contact"><h3>${r.visit.labels.contact}</h3><a href="mailto:${r.visit.email}">${r.visit.email}</a><a href="tel:${r.visit.phoneHref}">${r.visit.phoneDisplay}</a></div>
-    <div class="visit__block"><h3>Reservas</h3><p>${r.reservation.copy}</p><a class="button button--primary" href="${reservationHref}">${r.reservation.button}</a></div>
+    <div class="visit__block"><h3>Reservas</h3><p>${r.reservation.copy}</p>${reservationButton(r.reservation.button)}</div>
   </div></div></section>`;
 }
 
 function reservation(): string {
-  return `<section class="section section--dark reservation" id="reservas" aria-labelledby="reservation-title"><div class="editorial-container section-shell reservation__inner"><p class="eyebrow">${r.reservation.eyebrow}</p><h2 id="reservation-title" data-reveal="line"><span class="reveal__content">${r.reservation.heading}</span></h2><p>${r.service.location}<br>${r.service.hoursSummary}</p><a class="button button--primary" href="${reservationHref}">${r.reservation.button}</a></div></section>`;
+  return `<section class="section section--dark reservation" id="reservas" aria-labelledby="reservation-title"><div class="editorial-container section-shell reservation__inner"><p class="eyebrow">${r.reservation.eyebrow}</p><h2 id="reservation-title" data-reveal="line"><span class="reveal__content">${r.reservation.heading}</span></h2><p>${r.service.location}<br>${r.service.hoursSummary}</p>${reservationButton(r.reservation.button)}</div></section>`;
 }
 
 export function home(): string {

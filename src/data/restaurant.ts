@@ -1,3 +1,6 @@
+// Existing illustrative contact; replace with the restaurant's real numbers.
+const contactPhone = '+551130000000';
+
 export const restaurant = {
   name: 'Lume',
   descriptor: 'Cozinha de estação',
@@ -119,14 +122,44 @@ export const restaurant = {
     ],
     email: 'reservas@lume.example',
     phoneDisplay: '(11) 3000-0000',
-    phoneHref: '+551130000000',
+    phoneHref: contactPhone,
+    whatsappNumber: contactPhone,
   },
   reservation: {
     eyebrow: 'Sua mesa espera',
     heading: 'Venha para <em>a mesa.</em>',
     copy: 'Conte quando deseja vir e quantas pessoas estarão com você.',
     button: 'Reservar mesa',
-    emailSubject: 'Solicitação de reserva de mesa',
+    dialog: {
+      label: 'Reserva',
+      heading: 'Sua mesa no Lume.',
+      close: 'Fechar reserva',
+      cancel: 'Cancelar',
+      peopleLabel: 'Pessoas',
+      dateLabel: 'Data',
+      timeLabel: 'Horário',
+      continue: 'Continuar reserva',
+      note: 'Solicitação pelo WhatsApp, sujeita à confirmação da casa.',
+      demoNote: 'Contato demonstrativo. A reserva ainda não é real.',
+      people: [
+        { value: '2', label: '2' }, { value: '3', label: '3' },
+        { value: '4', label: '4' }, { value: '5', label: '5' },
+        { value: '6+', label: '6+' },
+      ],
+      services: [
+        { days: [2, 3, 4, 5, 6], times: ['19:00', '19:30', '20:00', '20:30', '21:00', '21:30'] },
+        { days: [0], times: ['12:00', '12:30', '13:00', '13:30', '14:00', '14:30'] },
+      ],
+      errors: {
+        people: 'Escolha o número de pessoas.',
+        date: 'Escolha uma data.',
+        pastDate: 'Escolha hoje ou uma data futura.',
+        closedDate: 'A casa não abre às segundas. Escolha outro dia.',
+        time: 'Escolha um horário.',
+        contact: 'O contato de reservas está indisponível. Entre em contato por email.',
+      },
+      message: 'Olá! Gostaria de solicitar uma reserva no Lume.',
+    },
   },
   footer: {
     demoNote: 'Projeto demonstrativo · endereço, contatos e reservas ilustrativos.',

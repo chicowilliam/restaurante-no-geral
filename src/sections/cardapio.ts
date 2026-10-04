@@ -1,4 +1,5 @@
-import { header, footer, mobileActions, reservationHref } from '../components/chrome';
+import { header, footer, mobileActions } from '../components/chrome';
+import { reservationButton } from '../components/reservation';
 import { image } from '../components/media';
 import { menuCategories, menuCopy, type MenuCategory, type MenuItem } from '../data/menu';
 
@@ -42,7 +43,7 @@ export function cardapio(): string {
           <div class="menu-group__categories">${menuCategories.filter((category) => category.type === group.id).map(menuCategory).join('')}</div>
         </section>${menuCopy.photos.filter((photo) => photo.after === group.id).map((photo) => menuPhoto(photo.src, photo.alt, photo.caption, photo.width, photo.height)).join('')}`).join('')}
       </div>
-      <section class="menu-reservation" aria-labelledby="menu-reservation-heading"><div class="menu-reservation__inner"><h2 id="menu-reservation-heading">${menuCopy.reservation.heading}</h2><p>${menuCopy.reservation.copy}</p><a class="button button--primary" href="${reservationHref}">${menuCopy.reservation.action}</a></div></section>
+      <section class="menu-reservation" aria-labelledby="menu-reservation-heading"><div class="menu-reservation__inner"><h2 id="menu-reservation-heading">${menuCopy.reservation.heading}</h2><p>${menuCopy.reservation.copy}</p>${reservationButton(menuCopy.reservation.action)}</div></section>
     </main>
     ${footer('menu')}${mobileActions('menu')}`;
 }
