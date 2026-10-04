@@ -15,7 +15,7 @@
   --border-hairline-inverse: rgba(245, 240, 229, .28);
   --container: 88rem;
   --gutter: clamp(1.25rem, 4.4vw, 5.5rem);
-  --section-space: clamp(5.5rem, 10vw, 10rem);
+  --section-space: 5rem;
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', Arial, sans-serif;
   --hero-background: #1b130f;
