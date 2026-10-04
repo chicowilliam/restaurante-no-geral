@@ -1,0 +1,36 @@
+.site-shell .button, .reservation-dialog .button {
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr) 2.75rem;
+  gap: 1rem;
+  min-height: 3.25rem;
+  padding: 0 0 0 1.25rem;
+  border-radius: var(--button-radius);
+  font-family: var(--font-sans);
+  font-size: .75rem;
+  font-weight: 650;
+  line-height: 1.4;
+  transition: background-color var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), border-color var(--motion-fast) var(--ease-standard);
+}
+.button__label { padding-block: .8rem; }
+.button__icon { display: grid; align-self: stretch; place-items: center; border-left: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 25%, transparent); }
+.button__icon svg { width: 1.1rem; height: 1.1rem; transition: transform var(--motion-fast) var(--ease-editorial); }
+.site-shell .button--primary, .reservation-dialog .button--primary, .btn-primary { background: var(--button-primary); color: var(--paper-100); border-color: var(--button-primary); }
+.site-shell .button--primary:hover, .reservation-dialog .button--primary:hover, .btn-primary:hover { background: var(--button-primary-hover); border-color: var(--button-primary-hover); }
+.site-shell .button--outline, .btn-secondary { background: transparent; border-color: color-mix(in srgb, currentColor 45%, transparent); }
+.site-shell .button--outline:hover, .btn-secondary:hover { background: var(--foreground); border-color: var(--foreground); color: var(--paper-100); }
+.site-shell .hero .button--outline:hover, .site-shell .mobile-actions .button--outline:hover { background: var(--paper-100); border-color: var(--paper-100); color: var(--ink-950); }
+.btn-text, .text-link { position: relative; }
+.btn-text::after, .text-link::after { content: ''; position: absolute; right: 0; bottom: .35rem; left: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-fast) var(--ease-editorial); }
+.btn-text:hover::after, .text-link:hover::after { transform: scaleX(1); }
+.site-shell .site-header .site-header__mobile-reserve { display: none; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:hover .button__icon svg { transform: translateX(3px); }
+}
+@media (max-width: 768px) {
+  .site-shell .site-header .site-header__cta { display: none; }
+  .site-shell .site-header__nav .site-header__mobile-reserve { display: inline-grid; padding: 0 0 0 1.25rem; color: var(--paper-100); }
+  .site-shell .hero__actions { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: .625rem; }
+  .site-shell .hero__actions .button, .site-shell .mobile-actions .button { grid-template-columns: minmax(0, 1fr) 1.9rem; gap: .4rem; padding: 0 0 0 .65rem; font-size: .6875rem; }
+  .site-shell .mobile-actions .button { min-height: 3.25rem; }
+}
