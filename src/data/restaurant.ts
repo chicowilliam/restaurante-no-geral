@@ -2,20 +2,51 @@ export const restaurant = {
   name: 'Lume',
   descriptor: 'Cozinha de estação',
   navigation: [
-    { label: 'Menu', href: '#cardapio' },
-    { label: 'Sobre', href: '#restaurante' },
-    { label: 'Experiência', href: '#ambiente' },
+    { label: 'Cardápio', href: '/cardapio/' },
+    { label: 'Nossa cozinha', href: '#restaurante' },
+    { label: 'Ambiente', href: '#ambiente' },
     { label: 'Visite', href: '#visite' },
   ],
   hero: {
     eyebrow: 'São Paulo · cozinha de estação',
     headingLines: ['Da estação', 'pelo fogo,', 'para a mesa.'],
-    description: 'O melhor de cada estação, preparado no fogo e servido para compartilhar sem pressa.',
+    description: 'Cozinha de estação em Pinheiros. Pratos na brasa, vegetais e drinks da casa para compartilhar.',
     primaryAction: 'Reservar mesa',
-    secondaryAction: 'Ver o cardápio',
+    secondaryAction: 'Ver cardápio',
     details: [
       { label: 'Serviço', value: 'Almoço e jantar · terça a sábado; domingo no almoço' },
       { label: 'Local', value: 'Pinheiros · São Paulo' },
+    ],
+  },
+  service: {
+    hoursLabel: 'Almoço e jantar',
+    hoursSummary: 'Ter–sáb · domingo no almoço',
+    locationLabel: 'Local',
+    location: 'Pinheiros · São Paulo',
+    cuisineLabel: 'Cozinha',
+    cuisine: 'Estação e brasa',
+    reservationLabel: 'Sua mesa',
+    reservationAction: 'Reservar mesa',
+  },
+  highlights: {
+    label: 'Cardápio',
+    heading: 'Escolha o que vai para a mesa.',
+    copy: 'Da entrada à sobremesa, uma seleção para começar a escolher.',
+    action: 'Ver cardápio completo',
+  },
+  bar: {
+    label: 'Bar da casa',
+    heading: 'Um drink para acompanhar.',
+    copy: 'Cítricos, ervas e clássicos. Para abrir a noite ou acompanhar os pratos.',
+    action: 'Ver bar completo',
+    image: '/images/bar.webp',
+    imageAlt: 'Balcão de pedra com taças e bancos diante da cozinha aberta',
+  },
+  kitchen: {
+    heading: 'O fogo revela o essencial.',
+    paragraphs: [
+      'Na cozinha do Lume, a brasa encontra os ingredientes da estação. Poucos elementos, acidez e textura deixam cada produto aparecer.',
+      'Marina Azevedo conduz uma cozinha direta, feita para compartilhar. O que chega melhor a cada dia orienta os pratos e a mesa.',
     ],
   },
   story: {
@@ -61,7 +92,7 @@ export const restaurant = {
   },
   gallery: {
     eyebrow: 'O ambiente',
-    heading: 'Um lugar para ficar mais um pouco.',
+    heading: 'A mesa está pronta.',
     copy: 'Luz baixa, conversa longa e uma mesa pronta para receber.',
     images: [
       { src: '/images/interior-1.webp', alt: 'Salão com mesas de madeira preparadas à luz de velas', caption: 'O salão', width: 1200, height: 800 },
@@ -76,7 +107,7 @@ export const restaurant = {
   },
   visit: {
     eyebrow: 'Encontre a casa',
-    heading: 'Esperamos você à mesa.',
+    heading: 'Visite o Lume.',
     labels: { address: 'Endereço', hours: 'Horários', contact: 'Contato' },
     address: ['Rua do Mercado, 128', 'Pinheiros · São Paulo, SP'],
     mapLabel: 'Ver o bairro no mapa',
@@ -92,12 +123,13 @@ export const restaurant = {
   },
   reservation: {
     eyebrow: 'Sua mesa espera',
-    heading: 'Vamos nos encontrar <em>à mesa?</em>',
-    copy: 'Uma boa mesa merece tempo. Conte quando deseja vir e quantas pessoas estarão com você.',
+    heading: 'Venha para <em>a mesa.</em>',
+    copy: 'Conte quando deseja vir e quantas pessoas estarão com você.',
     button: 'Reservar mesa',
     emailSubject: 'Solicitação de reserva de mesa',
   },
   footer: {
+    demoNote: 'Projeto demonstrativo · endereço, contatos e reservas ilustrativos.',
     tagline: 'Cozinha de estação. Tempo de estar junto.',
     copyright: 'Lume Restaurante',
     backToTop: 'Voltar ao início',
