@@ -21,7 +21,7 @@ function menuCategory(category: MenuCategory): string {
 }
 
 function menuPhoto(src: string, alt: string, caption: string, width: number, height: number): string {
-  return `<figure class="menu-photo">${image({ src, alt, width, height, className: 'menu-photo__image' })}<figcaption class="menu-photo__caption">${caption}</figcaption></figure>`;
+  return `<figure class="menu-photo" data-reveal="image">${image({ src, alt, width, height, className: 'menu-photo__image' })}<figcaption class="menu-photo__caption">${caption}</figcaption></figure>`;
 }
 
 export function cardapio(): string {
