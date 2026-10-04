@@ -1,5 +1,6 @@
 import { restaurant as r } from '../data/restaurant';
 import { reservationButton, reservationDialog } from './reservation';
+import { actionLink } from './buttons';
 
 type Page = 'home' | 'menu';
 
@@ -8,7 +9,7 @@ function destination(href: string, page: Page): string {
 }
 
 export function header(page: Page = 'home'): string {
-  return `<header class="site-header${page === 'menu' ? ' site-header--menu' : ''}" id="topo">
+  return `<header class="site-header${page === 'menu' ? ' site-header--menu is-scrolled' : ''}" id="site-header">
     <div class="editorial-container site-header__inner">
       <a class="site-header__brand" href="${page === 'home' ? '#topo' : '/'}" aria-label="${r.name}, início">${r.name}</a>
       <button class="site-header__toggle" type="button" aria-label="Abrir menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span></button>
@@ -31,5 +32,5 @@ export function footer(page: Page = 'home'): string {
 }
 
 export function mobileActions(page: Page = 'home'): string {
-  return `<nav class="mobile-actions" aria-label="Ações rápidas"><a class="button button--outline" href="${page === 'menu' ? '#categorias' : '/cardapio/'}">Ver cardápio</a>${reservationButton(r.reservation.button)}</nav>${reservationDialog()}`;
+  return `<nav class="mobile-actions" aria-label="Ações rápidas">${actionLink('Ver cardápio', page === 'menu' ? '#categorias' : '/cardapio/')}${reservationButton(r.reservation.button)}</nav>${reservationDialog()}`;
 }

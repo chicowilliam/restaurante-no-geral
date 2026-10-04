@@ -1,6 +1,11 @@
 import './styles/main.css';
+import './styles/typography.css';
+import './styles/site-atmosphere.css';
+import './styles/handoffs.css';
+import './styles/buttons.css';
 import './styles/motion.css';
 import './styles/reservation.css';
+import 'lenis/dist/lenis.css';
 import { initMotion } from './lib/motion';
 import { initReservation } from './components/reservation';
 

@@ -1,5 +1,7 @@
 import { header, footer, mobileActions } from '../components/chrome';
 import { reservationButton } from '../components/reservation';
+import { siteAtmosphere } from '../components/site-atmosphere';
+import { sectionHandoff } from '../components/section-handoff';
 import { image } from '../components/media';
 import { menuCategories, menuCopy, type MenuCategory, type MenuItem } from '../data/menu';
 
@@ -22,11 +24,11 @@ function menuCategory(category: MenuCategory): string {
 }
 
 function menuPhoto(src: string, alt: string, caption: string, width: number, height: number): string {
-  return `<figure class="menu-photo" data-reveal="image">${image({ src, alt, width, height, className: 'menu-photo__image' })}<figcaption class="menu-photo__caption">${caption}</figcaption></figure>`;
+  return `<figure class="menu-photo" data-motion="image">${image({ src, alt, width, height, className: 'menu-photo__image' })}<figcaption class="menu-photo__caption">${caption}</figcaption></figure>`;
 }
 
 export function cardapio(): string {
-  return `${header('menu')}
+  return `<div class="site-shell site-shell--menu" id="topo">${siteAtmosphere()}${header('menu')}
     <main id="conteudo" class="menu-page">
       <section class="menu-intro" aria-labelledby="menu-heading">
         <div class="menu-intro__inner">
@@ -43,7 +45,7 @@ export function cardapio(): string {
           <div class="menu-group__categories">${menuCategories.filter((category) => category.type === group.id).map(menuCategory).join('')}</div>
         </section>${menuCopy.photos.filter((photo) => photo.after === group.id).map((photo) => menuPhoto(photo.src, photo.alt, photo.caption, photo.width, photo.height)).join('')}`).join('')}
       </div>
-      <section class="menu-reservation" aria-labelledby="menu-reservation-heading"><div class="menu-reservation__inner"><h2 id="menu-reservation-heading">${menuCopy.reservation.heading}</h2><p>${menuCopy.reservation.copy}</p>${reservationButton(menuCopy.reservation.action)}</div></section>
+      ${sectionHandoff('quiet')}<section class="menu-reservation" aria-labelledby="menu-reservation-heading"><div class="menu-reservation__inner"><h2 id="menu-reservation-heading">${menuCopy.reservation.heading}</h2><p>${menuCopy.reservation.copy}</p>${reservationButton(menuCopy.reservation.action)}</div></section>
     </main>
-    ${footer('menu')}${mobileActions('menu')}`;
+    ${footer('menu')}${mobileActions('menu')}</div>`;
 }

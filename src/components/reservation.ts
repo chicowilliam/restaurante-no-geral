@@ -1,9 +1,12 @@
 import { restaurant } from '../data/restaurant';
+import { buttonContent } from './buttons';
+import { setSmoothScrollPaused } from '../lib/smooth-scroll';
 
 const copy = restaurant.reservation.dialog;
 
 export function reservationButton(label: string, className = 'button button--primary'): string {
-  return `<button class="${className}" type="button" data-reservation-open aria-haspopup="dialog" aria-controls="reservation-dialog">${label}</button>`;
+  const isButton = className.split(' ').includes('button');
+  return `<button class="${className}${isButton ? ' btn-primary' : ' btn-text'}" type="button" data-reservation-open aria-haspopup="dialog" aria-controls="reservation-dialog">${isButton ? buttonContent(label) : label}</button>`;
 }
 
 function timeOptions(times: readonly string[], selected = ''): string {
@@ -11,7 +14,7 @@ function timeOptions(times: readonly string[], selected = ''): string {
 }
 
 export function reservationDialog(): string {
-  return `<dialog class="reservation-dialog" id="reservation-dialog" aria-labelledby="booking-title" aria-describedby="booking-note">
+  return `<dialog class="reservation-dialog" id="reservation-dialog" data-lenis-prevent aria-labelledby="booking-title" aria-describedby="booking-note">
     <div class="reservation-dialog__inner">
       <header class="reservation-dialog__header"><p class="eyebrow">${copy.label}</p><button class="reservation-dialog__close" type="button" data-reservation-close aria-label="${copy.close}" title="${copy.close}"><span aria-hidden="true"></span><span aria-hidden="true"></span></button><h2 id="booking-title">${copy.heading}</h2></header>
       <form class="reservation-form" novalidate>
@@ -19,7 +22,7 @@ export function reservationDialog(): string {
         <div class="reservation-field"><label for="booking-date">${copy.dateLabel}</label><input class="reservation-date" type="date" name="date" id="booking-date" aria-describedby="booking-date-error" required><p class="reservation-error" id="booking-date-error" aria-live="polite"></p></div>
         <fieldset class="reservation-field" id="booking-time" aria-describedby="booking-time-error"><legend>${copy.timeLabel}</legend><div class="reservation-options reservation-options--time">${timeOptions(copy.services[0].times)}</div><p class="reservation-error" id="booking-time-error" aria-live="polite"></p></fieldset>
         <p class="reservation-dialog__note" id="booking-note">${copy.note}</p>
-        <button class="button button--primary reservation-dialog__submit" type="submit">${copy.continue}</button>
+        <button class="button button--primary btn-primary reservation-dialog__submit" type="submit">${buttonContent(copy.continue)}</button>
         <p class="reservation-error" id="booking-contact-error" role="status"></p>
         <div class="reservation-dialog__bottom"><button class="reservation-dialog__cancel" type="button" data-reservation-close>${copy.cancel}</button><p>${copy.demoNote}</p></div>
       </form>
@@ -81,6 +84,7 @@ export function initReservation(): void {
     });
     const scrollBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'auto';
+    setSmoothScrollPaused(false, savedScroll.y);
     window.scrollTo(savedScroll.x, savedScroll.y);
     document.documentElement.style.scrollBehavior = scrollBehavior;
   };
@@ -109,7 +113,7 @@ export function initReservation(): void {
     if (!dialog.open || closingTimer !== undefined) return;
     dialog.classList.remove('is-open');
     if (preference.matches) finishClose();
-    else closingTimer = setTimeout(finishClose, 360);
+    else closingTimer = setTimeout(finishClose, parseFloat(getComputedStyle(dialog).getPropertyValue('--motion-sheet')) || 360);
   };
 
   document.addEventListener('click', (event) => {
@@ -119,6 +123,7 @@ export function initReservation(): void {
     dateInput.min = localDate();
     updateTimes();
     savedScroll = { x: window.scrollX, y: window.scrollY };
+    setSmoothScrollPaused(true);
     savedBodyStyles = bodyProperties.map((property) => [property, document.body.style.getPropertyValue(property)]);
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const padding = parseFloat(getComputedStyle(document.body).paddingRight);

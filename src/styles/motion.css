@@ -1,98 +1,13 @@
-@layer components {
-  /* Content stays visible until the shared observer has been initialized. */
-  .reveal__content { display: block; }
-  .reveal-pending[data-reveal="fade"],
-  .reveal-pending[data-reveal="product"] {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  .motion-ready .reveal-pending[data-reveal="fade"],
-  .motion-ready .reveal-pending[data-reveal="product"] {
-    transition: opacity var(--motion-text-duration) var(--ease-out) var(--reveal-delay, 0ms), transform var(--motion-text-duration) var(--ease-out) var(--reveal-delay, 0ms);
-  }
-  .reveal-pending[data-reveal="fade"].is-visible,
-  .reveal-pending[data-reveal="product"].is-visible { opacity: 1; transform: none; }
-
-  .reveal-pending[data-reveal="line"]:not(.hero__title),
-  .reveal-pending.hero__title .hero__title-line {
-    overflow: clip;
-    overflow-clip-margin: .18em;
-  }
-  .reveal-pending[data-reveal="line"] .reveal__content {
-    opacity: 0;
-    transform: translateY(110%);
-  }
-  .motion-ready .reveal-pending[data-reveal="line"] .reveal__content {
-    transition: transform var(--motion-title-duration) var(--ease-out) var(--reveal-delay, 0ms), opacity var(--motion-text-duration) var(--ease-out) var(--reveal-delay, 0ms);
-  }
-  .reveal-pending[data-reveal="line"].is-visible .reveal__content { opacity: 1; transform: none; }
-  .motion-ready .hero__title .hero__title-line:nth-child(2) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
-  .motion-ready .hero__title .hero__title-line:nth-child(3) .reveal__content { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
-
-  .reveal-pending[data-reveal="image"] { overflow: clip; }
-  .reveal-pending[data-reveal="image"] > img {
-    opacity: .5;
-    clip-path: inset(0 0 12% 0);
-    transform: scale(1.035);
-  }
-  .motion-ready .reveal-pending[data-reveal="image"] > img {
-    transition: clip-path var(--motion-image-duration) var(--ease-out) var(--reveal-delay, 0ms), transform var(--motion-image-duration) var(--ease-out) var(--reveal-delay, 0ms), opacity var(--motion-text-duration) var(--ease-out) var(--reveal-delay, 0ms);
-  }
-  .reveal-pending[data-reveal="image"].is-visible > img { opacity: 1; clip-path: inset(0); transform: none; }
-
-  .reveal-pending[data-reveal="stagger"] > div {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  .motion-ready .reveal-pending[data-reveal="stagger"] > div {
-    transition: opacity var(--motion-text-duration) var(--ease-out), transform var(--motion-text-duration) var(--ease-out);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(2) { transition-delay: calc(var(--reveal-delay, 0ms) + 70ms); }
-  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(3) { transition-delay: calc(var(--reveal-delay, 0ms) + 140ms); }
-  .motion-ready .reveal-pending[data-reveal="stagger"] > div:nth-child(4) { transition-delay: calc(var(--reveal-delay, 0ms) + 210ms); }
-  .reveal-pending[data-reveal="stagger"].is-visible > div { opacity: 1; transform: none; }
-
-  /* The LCP photograph is visible throughout its short initial settling motion. */
-  .motion-ready .hero__image { animation: hero-settle 1200ms var(--ease-out) both; }
-  @keyframes hero-settle { from { transform: scale(1.04); } to { transform: scale(1); } }
-
-  .reveal-instant,
-  .reveal-instant .reveal__content,
-  .reveal-instant[data-reveal="image"] > img,
-  .reveal-instant[data-reveal="stagger"] > div { transition: none !important; }
-  .reveal-instant .reveal__content { opacity: 1; transform: none; }
-}
+.motion__content { display: block; }
+[data-motion="headline"]:not(.hero__title), .hero__title-line { overflow: clip; overflow-clip-margin: .16em; }
+[data-motion="image"], .dish-feature figure { overflow: clip; }
+html.lenis { scroll-behavior: auto; }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .dish-feature figure img { transition: transform 450ms var(--ease-out); }
+  .dish-feature figure img { transition: transform var(--motion-base) var(--ease-editorial); }
   .dish-feature:hover figure img { transform: scale(1.02); }
 }
-
-@media (max-width: 767px) {
-  .reveal-pending.dish-feature[data-reveal="product"] { opacity: 1; transform: none; transition: none; }
-  .reveal-pending.dish-feature figure img { opacity: .5; transform: scale(1.025); clip-path: inset(0 0 8% 0); }
-  .reveal-pending.dish-feature .dish-feature__heading,
-  .reveal-pending.dish-feature > p { opacity: 0; transform: translateY(12px); }
-  .motion-ready .reveal-pending.dish-feature figure img { transition: opacity var(--motion-text-duration) var(--ease-out), transform var(--motion-image-duration) var(--ease-out), clip-path var(--motion-image-duration) var(--ease-out); }
-  .motion-ready .reveal-pending.dish-feature .dish-feature__heading,
-  .motion-ready .reveal-pending.dish-feature > p { transition: opacity var(--motion-text-duration) var(--ease-out) 80ms, transform var(--motion-text-duration) var(--ease-out) 80ms; }
-  .reveal-pending.dish-feature.is-visible figure img { opacity: 1; transform: none; clip-path: inset(0); }
-  .reveal-pending.dish-feature.is-visible .dish-feature__heading,
-  .reveal-pending.dish-feature.is-visible > p { opacity: 1; transform: none; }
-  .reveal-instant.dish-feature figure img,
-  .reveal-instant.dish-feature .dish-feature__heading,
-  .reveal-instant.dish-feature > p { transition: none !important; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal], [data-reveal] .reveal__content, [data-reveal] > div,
-  [data-reveal="image"] > img, .reveal-pending.dish-feature figure img,
-  .reveal-pending.dish-feature .dish-feature__heading, .reveal-pending.dish-feature > p {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
-    transition: none !important;
-  }
-  .motion-ready .hero__image { animation: none; transform: none; }
+  [data-motion], .motion__content, [data-motion] img { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  [data-draw] { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
 }
