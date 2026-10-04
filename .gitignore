@@ -3,6 +3,8 @@
 .codegraph.db-wal
 .env
 .env.*
+!.env.example
 node_modules/
+dist/
 .DS_Store
 Thumbs.db
