@@ -1,4 +1,8 @@
 import './styles/main.css';
+import './styles/motion.css';
+import { initMotion } from './lib/motion';
+
+initMotion();
 
 const menuButton = document.querySelector<HTMLButtonElement>('.site-header__toggle');
 const navigation = document.querySelector<HTMLElement>('.site-header__nav');

@@ -30,4 +30,7 @@
   --menu-hairline: rgb(36 36 30 / .16);
   --header-height: 5.25rem;
   --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --motion-text-duration: 650ms;
+  --motion-title-duration: 800ms;
+  --motion-image-duration: 900ms;
 }
