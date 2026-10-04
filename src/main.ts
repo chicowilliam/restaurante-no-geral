@@ -21,7 +21,7 @@ if (menuButton && navigation) {
   });
 
   navigation.addEventListener('click', (event) => {
-    if ((event.target as HTMLElement).closest('a')) closeMenu();
+    if ((event.target as HTMLElement).closest('a')) closeMenu(true);
   });
 
   document.addEventListener('keydown', (event) => {
@@ -35,4 +35,25 @@ if (menuButton && navigation) {
   window.matchMedia('(min-width: 769px)').addEventListener('change', (event) => {
     if (event.matches) closeMenu();
   });
+}
+
+const categoryLinks = document.querySelectorAll<HTMLAnchorElement>('.menu-category-nav a');
+const menuGroups = document.querySelectorAll<HTMLElement>('.menu-group');
+
+if (categoryLinks.length && menuGroups.length) {
+  const setActiveCategory = (id: string) => {
+    categoryLinks.forEach((link) => {
+      if (link.hash === `#${id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  setActiveCategory(location.hash.slice(1) || menuGroups[0].id);
+  categoryLinks.forEach((link) => link.addEventListener('click', () => setActiveCategory(link.hash.slice(1))));
+
+  const observer = new IntersectionObserver((entries) => {
+    const visibleGroup = entries.find((entry) => entry.isIntersecting);
+    if (visibleGroup) setActiveCategory(visibleGroup.target.id);
+  }, { rootMargin: '-72px 0px -65% 0px', threshold: 0 });
+  menuGroups.forEach((group) => observer.observe(group));
 }
