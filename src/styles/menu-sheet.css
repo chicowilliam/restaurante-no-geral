@@ -88,3 +88,38 @@
   .menu-sheet__notes { margin-top: 1.75rem; }
 }
 
+@page lume-menu { size: A4; margin: 11mm; }
+@media print {
+  html:has(.menu-sheet), body:has(.menu-sheet) { margin: 0; padding: 0; min-width: 0; background: none; }
+  body:has(.menu-sheet) .site-header, body:has(.menu-sheet) .site-footer,
+  body:has(.menu-sheet) .mobile-actions, body:has(.menu-sheet) .reservation-dialog,
+  body:has(.menu-sheet) .skip-link, .site-shell--menu .site-atmosphere,
+  .menu-sheet__reservation { display: none !important; }
+  .site-shell--menu, .site-shell--menu .menu-page { background: none; padding: 0; }
+  .menu-sheet { page: lume-menu; width: 100%; margin: 0; padding: 0; background: none; color: var(--ink-950); }
+  .menu-sheet, .menu-sheet * { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+  .menu-sheet__masthead { grid-template-columns: 1fr auto 1fr; gap: 5mm; padding-bottom: 4mm; }
+  .menu-sheet__masthead h1 { grid-column: auto; grid-row: auto; }
+  .menu-sheet__brand { font-size: 30pt; }
+  .menu-sheet__subtitle, .menu-sheet__place, .menu-sheet__edition { font-size: 8pt; }
+  .menu-sheet__place span { display: block; }
+  .menu-sheet__columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10mm; padding-top: 5mm; }
+  .site-shell .menu-group__header h2 { font-size: 17pt; }
+  .menu-group__header { min-height: 8mm; margin-bottom: 3mm; padding-bottom: 1.5mm; break-after: avoid; }
+  .menu-group__header .menu-illustration { width: 16mm; height: 13mm; background: none; }
+  .menu-group + .menu-group { margin-top: 6mm; }
+  /* Keep the last drinks chapter intact on the second printed sheet. */
+  #sem-alcool.menu-group { break-before: page; }
+  .menu-category + .menu-category { margin-top: 4mm; }
+  .site-shell .menu-category__heading { font-size: 11pt; margin-bottom: 2mm; break-after: avoid; }
+  .menu-category__description { font-size: 8pt; margin-bottom: 2mm; }
+  .menu-sheet .menu-item__name, .menu-item__price { font-size: 9.5pt; }
+  .menu-item__description { font-size: 8.25pt; line-height: 1.35; }
+  .menu-item__tags { font-size: 8pt; }
+  .menu-item + .menu-item { margin-top: 2mm; }
+  .menu-sheet__interlude { margin: 3mm 0 2mm; gap: 4mm; }
+  .menu-sheet__interlude .menu-illustration { width: 18mm; height: 12mm; }
+  .menu-sheet__notes { grid-template-columns: 1fr auto; gap: 5mm; margin-top: 5mm; padding-top: 3mm; break-inside: avoid; font-size: 8pt; }
+  .menu-sheet__notes .menu-sheet__disclaimer { font-size: 7pt; }
+  .menu-sheet__hours { font-size: 8pt; }
+}
