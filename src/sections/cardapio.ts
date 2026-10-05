@@ -1,51 +1,54 @@
 import { header, footer, mobileActions } from '../components/chrome';
 import { reservationButton } from '../components/reservation';
 import { siteAtmosphere } from '../components/site-atmosphere';
-import { sectionHandoff } from '../components/section-handoff';
-import { image } from '../components/media';
+import { menuIllustration } from '../components/menu-illustrations';
+import { restaurant } from '../data/restaurant';
 import { menuCategories, menuCopy, type MenuCategory, type MenuItem } from '../data/menu';
 
-const currency = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
-
 function menuItem(item: MenuItem): string {
+  const price = item.price.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(item.price) ? 0 : 2, maximumFractionDigits: 2 });
   return `<li class="menu-item">
-    <div class="menu-item__row"><h4 class="menu-item__name">${item.name}</h4><span class="menu-item__price">${currency.format(item.price)}</span></div>
-    <p class="menu-item__description">${item.description}</p>
-    ${item.tags?.length ? `<p class="menu-item__tags">${item.tags.join(' · ')}</p>` : ''}
+    <div class="menu-item__row"><h4 class="menu-item__name">${item.name}</h4><span class="menu-item__price">${price}</span></div>
+    <p class="menu-item__description">${item.description}${item.tags?.length ? `<span class="menu-item__tags"> · ${item.tags.join(', ')}</span>` : ''}</p>
   </li>`;
 }
 
 function menuCategory(category: MenuCategory): string {
   return `<section class="menu-category" aria-labelledby="${category.id}">
     <h3 class="menu-category__heading" id="${category.id}">${category.label}</h3>
-    <p class="menu-category__description">${category.description}</p>
+    ${category.description ? `<p class="menu-category__description">${category.description}</p>` : ''}
     <ul class="menu-category__items">${category.items.map(menuItem).join('')}</ul>
   </section>`;
 }
 
-function menuPhoto(src: string, alt: string, caption: string, width: number, height: number): string {
-  return `<figure class="menu-photo" data-motion="image">${image({ src, alt, width, height, className: 'menu-photo__image' })}<figcaption class="menu-photo__caption">${caption}</figcaption></figure>`;
+function menuGroup(type: MenuCategory['type']): string {
+  const group = menuCopy.groups.find((entry) => entry.id === type)!;
+  const illustration = type === 'comidas' ? 'herb' : type === 'bar' ? 'glass' : type === 'vinhos' ? 'bottle' : undefined;
+  return `<section class="menu-group" id="${type}" aria-labelledby="${type}-heading">
+    <header class="menu-group__header"><h2 id="${type}-heading">${group.label}</h2>${illustration ? menuIllustration(illustration) : ''}</header>
+    ${menuCategories.filter((category) => category.type === type).map((category) => `${category.id === 'sobremesas' ? `<div class="menu-sheet__interlude" aria-hidden="true">${menuIllustration('plate')}</div>` : ''}${menuCategory(category)}`).join('')}
+  </section>`;
 }
 
 export function cardapio(): string {
   return `<div class="site-shell site-shell--menu" id="topo">${siteAtmosphere()}${header('menu')}
     <main id="conteudo" class="menu-page">
-      <section class="menu-intro" aria-labelledby="menu-heading">
-        <div class="menu-intro__inner">
-          <p class="menu-intro__eyebrow eyebrow">${menuCopy.eyebrow}</p>
-          <h1 class="menu-intro__heading" id="menu-heading">${menuCopy.heading}</h1>
-          <p class="menu-intro__copy">${menuCopy.intro}</p>
-          <p class="menu-intro__note">${menuCopy.disclaimer}</p>
+      <article class="menu-sheet" aria-labelledby="menu-heading">
+        <header class="menu-sheet__masthead">
+          <p class="menu-sheet__place">${restaurant.descriptor}<span>${restaurant.service.location}</span></p>
+          <h1 id="menu-heading"><span class="menu-sheet__brand">${restaurant.name}</span><span class="menu-sheet__subtitle">${menuCopy.subtitle}</span></h1>
+          <p class="menu-sheet__edition">${menuCopy.heading}<span>${menuCopy.pricesNote}</span></p>
+        </header>
+        <div class="menu-sheet__columns">
+          <div class="menu-sheet__column">${menuGroup('comidas')}</div>
+          <div class="menu-sheet__column">${menuGroup('bar')}${menuGroup('vinhos')}${menuGroup('sem-alcool')}</div>
         </div>
-      </section>
-      <nav class="menu-category-nav" id="categorias" aria-label="${menuCopy.navigationLabel}"><div class="menu-category-nav__inner">${menuCopy.groups.map((group) => `<a href="#${group.id}">${group.label}</a>`).join('')}</div></nav>
-      <div class="menu-layout">
-        ${menuCopy.groups.map((group) => `<section class="menu-group" id="${group.id}" aria-labelledby="${group.id}-heading">
-          <header class="menu-group__header"><p class="menu-group__eyebrow eyebrow">${group.eyebrow}</p><h2 class="menu-group__title" id="${group.id}-heading">${group.label}</h2><p class="menu-group__description">${group.description}</p></header>
-          <div class="menu-group__categories">${menuCategories.filter((category) => category.type === group.id).map(menuCategory).join('')}</div>
-        </section>${menuCopy.photos.filter((photo) => photo.after === group.id).map((photo) => menuPhoto(photo.src, photo.alt, photo.caption, photo.width, photo.height)).join('')}`).join('')}
-      </div>
-      ${sectionHandoff('quiet')}<section class="menu-reservation" aria-labelledby="menu-reservation-heading"><div class="menu-reservation__inner"><h2 id="menu-reservation-heading">${menuCopy.reservation.heading}</h2><p>${menuCopy.reservation.copy}</p>${reservationButton(menuCopy.reservation.action)}</div></section>
+        <footer class="menu-sheet__notes">
+          <div><p>${menuCopy.availabilityNote} ${menuCopy.allergyNote}</p><p class="menu-sheet__disclaimer">${menuCopy.disclaimer}</p></div>
+          <dl class="menu-sheet__hours">${restaurant.visit.hours.map((entry) => `<div><dt>${entry.days}</dt><dd>${entry.hours}</dd></div>`).join('')}</dl>
+          <div class="menu-sheet__reservation">${reservationButton(menuCopy.reservation.action)}</div>
+        </footer>
+      </article>
     </main>
     ${footer('menu')}${mobileActions('menu')}</div>`;
 }

@@ -17,22 +17,20 @@ export type MenuCategory = {
 };
 
 export const menuCopy = {
-  eyebrow: 'À mesa no Lume',
   heading: 'Cardápio',
-  intro: 'Da primeira entrada ao último gole: ingredientes de estação, fogo e tempo à mesa.',
+  subtitle: 'Bar & cozinha',
+  pricesNote: 'Valores em R$',
+  availabilityNote: 'Menu sujeito à disponibilidade.',
+  allergyNote: 'Informe à equipe suas alergias e restrições alimentares.',
+  backHome: 'Início',
   disclaimer: 'Cardápio demonstrativo. Pratos, bebidas e valores ilustrativos, sujeitos à disponibilidade dos ingredientes.',
-  navigationLabel: 'Categorias do cardápio',
   reservation: { heading: 'Sua próxima mesa.', copy: 'Escolha o dia e venha provar a estação.', action: 'Reservar mesa' },
   groups: [
-    { id: 'comidas', label: 'Comidas', eyebrow: 'Nossa cozinha', description: 'Para começar, compartilhar e terminar.' },
-    { id: 'bar', label: 'Bar', eyebrow: 'Do balcão', description: 'Um brinde antes, durante ou depois.' },
-    { id: 'vinhos', label: 'Vinhos', eyebrow: 'A carta', description: 'Uma seleção para acompanhar sua mesa.' },
-    { id: 'sem-alcool', label: 'Sem álcool', eyebrow: 'Outro ritmo', description: 'Frescor e pequenas pausas.' },
-  ] satisfies { id: MenuCategory['type']; label: string; eyebrow: string; description: string }[],
-  photos: [
-    { after: 'comidas', src: '/images/seasonal.webp', alt: 'Abóbora na brasa com iogurte, sementes e ervas', caption: 'A estação encontra a brasa.', width: 1200, height: 800 },
-    { after: 'bar', src: '/images/bar.webp', alt: 'Bar do Lume com bancos, copos e garrafas sobre o balcão', caption: 'Entre um prato e outro, um brinde.', width: 1600, height: 1001 },
-  ],
+    { id: 'comidas', label: 'Comidas' },
+    { id: 'bar', label: 'Bar' },
+    { id: 'vinhos', label: 'Vinhos' },
+    { id: 'sem-alcool', label: 'Sem álcool' },
+  ] satisfies { id: MenuCategory['type']; label: string }[],
 };
 
 export const menuCategories: MenuCategory[] = [
@@ -48,15 +46,20 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
   {
-    id: 'principais', label: 'Da cozinha', description: 'A brasa encontra o melhor do dia.', type: 'comidas',
+    id: 'na-brasa', label: 'Na brasa', description: 'A brasa encontra o melhor do dia.', type: 'comidas',
     items: [
       { name: 'Peixe do dia na brasa', description: 'Caldo de legumes tostados, folhas e limão', price: 96, featured: true, image: '/images/plate.webp', alt: 'Peixe grelhado com tomates assados e ervas em prato de cerâmica' },
-      { name: 'Arroz cremoso de cogumelos', description: 'Queijo curado, alho assado e salsinha', price: 82, tags: ['Vegetariano'] },
       { name: 'Frango caipira assado', description: 'Purê de milho, conserva da casa e jus', price: 89 },
       { name: 'Abóbora na brasa', description: 'Grãos, iogurte de ervas e sementes tostadas', price: 72, featured: true, image: '/images/seasonal.webp', alt: 'Abóbora assada com iogurte, grãos, sementes e ervas em prato de cerâmica', tags: ['Vegetariano'] },
       { name: 'Costela de cocção lenta', description: 'Purê de mandioca, cebola tostada e molho do assado', price: 108 },
-      { name: 'Nhoque de batata', description: 'Tomates assados, manteiga de sálvia e queijo curado', price: 78, tags: ['Vegetariano'] },
       { name: 'Bife de chorizo', description: 'Batatas rústicas, folhas e chimichurri da casa', price: 118 },
+    ],
+  },
+  {
+    id: 'principais', label: 'Da cozinha', description: '', type: 'comidas',
+    items: [
+      { name: 'Arroz cremoso de cogumelos', description: 'Queijo curado, alho assado e salsinha', price: 82, tags: ['Vegetariano'] },
+      { name: 'Nhoque de batata', description: 'Tomates assados, manteiga de sálvia e queijo curado', price: 78, tags: ['Vegetariano'] },
     ],
   },
   {
@@ -70,13 +73,23 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
   {
-    id: 'coqueteis', label: 'Coquetéis', description: 'Clássicos e misturas da casa.', type: 'bar',
+    id: 'coqueteis', label: 'Da casa', description: '', type: 'bar',
     items: [
       { name: 'Gim da estação', description: 'Gim, tônica, cítricos e ervas frescas', price: 38, featured: true },
       { name: 'Caju e brasa', description: 'Cachaça, caju, limão e toque de rapadura', price: 36, featured: true },
       { name: 'Negroni da casa', description: 'Gim, vermute rosso e bitter', price: 42, featured: true },
+    ],
+  },
+  {
+    id: 'classicos', label: 'Clássicos', description: '', type: 'bar',
+    items: [
       { name: 'Caipirinha', description: 'Cachaça, limão fresco e açúcar', price: 32 },
       { name: 'Martíni seco', description: 'Gim, vermute seco e azeitona', price: 40 },
+    ],
+  },
+  {
+    id: 'spritz', label: 'Spritz', description: '', type: 'bar',
+    items: [
       { name: 'Spritz cítrico', description: 'Aperitivo, espumante, soda e laranja', price: 36 },
     ],
   },
@@ -89,7 +102,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
   {
-    id: 'carta-de-vinhos', label: 'Nossa seleção', description: 'Taças para acompanhar a refeição.', type: 'vinhos',
+    id: 'carta-de-vinhos', label: 'Em taça', description: '', type: 'vinhos',
     items: [
       { name: 'Espumante brut', description: 'Brasil · fresco e delicado · taça 150 ml', price: 34 },
       { name: 'Branco da casa', description: 'Portugal · cítrico e mineral · taça 150 ml', price: 32 },

@@ -1,6 +1,7 @@
 import { restaurant as r } from '../data/restaurant';
 import { reservationButton, reservationDialog } from './reservation';
 import { actionLink } from './buttons';
+import { menuCopy } from '../data/menu';
 
 type Page = 'home' | 'menu';
 
@@ -32,5 +33,5 @@ export function footer(page: Page = 'home'): string {
 }
 
 export function mobileActions(page: Page = 'home'): string {
-  return `<nav class="mobile-actions" aria-label="Ações rápidas">${actionLink('Ver cardápio', page === 'menu' ? '#categorias' : '/cardapio/')}${reservationButton(r.reservation.button)}</nav>${reservationDialog()}`;
+  return `<nav class="mobile-actions" aria-label="Ações rápidas">${actionLink(page === 'menu' ? menuCopy.backHome : 'Ver cardápio', page === 'menu' ? '/' : '/cardapio/')}${reservationButton(r.reservation.button)}</nav>${reservationDialog()}`;
 }
