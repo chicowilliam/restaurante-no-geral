@@ -28,10 +28,11 @@
   --container: 88rem;
   --gutter: clamp(1.25rem, 4.4vw, 5.5rem);
   --section-space: 5rem;
-  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Manrope', Arial, sans-serif;
+  --font-display: 'Bodoni Moda', Didot, Georgia, serif;
+  --font-sans: 'IBM Plex Sans', Arial, sans-serif;
+  --font-condensed: 'IBM Plex Sans Condensed', 'Arial Narrow', Arial, sans-serif;
   --font-body: var(--font-sans);
-  --text-display-xl: clamp(3.55rem, 9.1cqi, 8.1rem);
+  --text-display-xl: clamp(3.35rem, 8.3cqi, 7.6rem);
   --text-display-lg: clamp(2.5rem, 4.5cqi, 4.5rem);
   --text-display-md: clamp(2.35rem, 3.8cqi, 3.6rem);
   --text-heading-lg: clamp(2rem, 3.1cqi, 3rem);
@@ -51,7 +52,6 @@
   --menu-label: #785b44;
   --menu-hairline: var(--line-dark);
   --header-height: 5.25rem;
-  --category-height: 4rem;
   --ease-out: cubic-bezier(.22, 1, .36, 1);
   --ease-standard: cubic-bezier(.2, .65, .3, 1);
   --ease-editorial: var(--ease-out);

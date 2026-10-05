@@ -15,7 +15,7 @@ function hero(): string {
     <div class="editorial-container hero__inner">
       <div class="hero__content">
         <p class="eyebrow hero__eyebrow" data-motion="section" data-delay="80">${r.hero.eyebrow}</p>
-        <h1 class="display hero__title" id="hero-title" data-motion="headline" data-delay="180"><span class="hero__title-line"><span class="motion__content">${r.hero.headingLines[0]}</span></span><span class="hero__title-line"><span class="motion__content"><em>${r.hero.headingLines[1]}</em></span></span><span class="hero__title-line"><span class="motion__content">${r.hero.headingLines[2]}</span></span></h1>
+        <h1 class="display hero__title" id="hero-title" data-motion="headline" data-delay="180"><span class="hero__title-line"><span class="motion__content">${r.hero.headingLines[0]}</span></span><span class="hero__title-line hero__title-line--accent"><span class="motion__content">${r.hero.headingLines[1]}</span></span><span class="hero__title-line"><span class="motion__content">${r.hero.headingLines[2]}</span></span></h1>
         <p class="hero__description" data-motion="section" data-delay="380">${r.hero.description}</p>
         <div class="hero__actions" data-motion="cta" data-delay="480">${reservationButton(r.hero.primaryAction)}${actionLink(r.hero.secondaryAction, '/cardapio/')}</div>
       </div>

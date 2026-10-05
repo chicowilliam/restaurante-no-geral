@@ -127,7 +127,7 @@ export const restaurant = {
   },
   reservation: {
     eyebrow: 'Sua mesa espera',
-    heading: 'Venha para <em>a mesa.</em>',
+    heading: 'Venha para a mesa.',
     copy: 'Conte quando deseja vir e quantas pessoas estarão com você.',
     button: 'Reservar mesa',
     dialog: {
